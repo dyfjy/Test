@@ -2,6 +2,7 @@ package org.andy.shop.action;
 
 import java.util.List;
 
+import org.andy.memcached.GoodsCacheImplTest;
 import org.andy.shop.common.PageList;
 import org.andy.shop.entity.UserInfo;
 import org.andy.shop.service.UserInfoService;
@@ -46,6 +47,8 @@ public class UserinfoAction extends ActionSupport implements
 
 	@Autowired
 	private UserInfoService userInfoService;
+	@Autowired
+	private GoodsCacheImplTest goodsCacheImplTest;
 
 	public Integer getId() {
 		return id;
@@ -119,4 +122,10 @@ public class UserinfoAction extends ActionSupport implements
 		
 	}
 
+	@Action(value="testCached")
+	public void testCached() {
+		// TODO Auto-generated method stub  
+		userInfo= goodsCacheImplTest.selectGoodsById(1);
+		AjaxUtil.ajaxJSONResponse(userInfo);
+	}
 }

@@ -5,8 +5,10 @@ import org.andy.shop.common.PageList;
 import org.andy.shop.dao.UserInfoDao;
 import org.andy.shop.entity.UserInfo;
 import org.andy.shop.service.UserInfoService;
+import org.andy.shop.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 /**
  * 创建时间：2015-2-13 下午1:03:47
@@ -22,7 +24,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo> implements Us
 	public PageList<UserInfo> queryByPage() {
 		String hql ="from UserInfo";
 		int page =0;
-		int rows=5;
+		int rows=Constants.PAGE_ROWS_DAFAULT;
 		return userInfoDao.findPageList(hql, page, rows);
 	}
 }
